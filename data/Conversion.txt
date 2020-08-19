@@ -1,11 +1,50 @@
 [
   {
     "id": 1,
+    "from_fmt": "json",
+    "to_fmt": "csv",
+    "input_data": "[{\"name\": \"John\", \"surname\": \"Doe\"}, {\"name\": \"Jane\", \"surname\": \"Doe\"}]",
+    "output_data": "name,surname\r\nJohn,Doe\r\nJane,Doe\r\n",
+    "datetime": "Wed Aug 19 18:27:38 2020"
+  },
+  {
+    "id": 2,
     "from_fmt": "csv",
     "to_fmt": "json",
     "input_data": "name,surname\r\nJohn,Doe\r\nJane,Doe\r\n",
     "output_data": "[{\"name\": \"John\", \"surname\": \"Doe\"}, {\"name\": \"Jane\", \"surname\": \"Doe\"}]",
-    "datetime": 1597851987,
-    "user_id": ""
+    "datetime": "Wed Aug 19 18:28:44 2020"
+  },
+  {
+    "id": 3,
+    "from_fmt": "csv",
+    "to_fmt": "yaml",
+    "input_data": "name,surname\r\nJohn,Doe\r\nJane,Doe\r\n",
+    "output_data": "- name: John\n  surname: Doe\n- name: Jane\n  surname: Doe\n",
+    "datetime": "Wed Aug 19 18:28:57 2020"
+  },
+  {
+    "id": 4,
+    "from_fmt": "yaml",
+    "to_fmt": "csv",
+    "input_data": "- name: John\n  surname: Doe\n- name: Jane\n  surname: Doe\n",
+    "output_data": "name,surname\r\nJohn,Doe\r\nJane,Doe\r\n",
+    "datetime": "Wed Aug 19 18:29:17 2020"
+  },
+  {
+    "id": 5,
+    "from_fmt": "json",
+    "to_fmt": "yaml",
+    "input_data": "[{\"name\": \"John\", \"surname\": \"Doe\"}, {\"name\": \"Jane\", \"surname\": \"Doe\"}]",
+    "output_data": "- name: John\n  surname: Doe\n- name: Jane\n  surname: Doe\n",
+    "datetime": "Wed Aug 19 18:29:28 2020"
+  },
+  {
+    "id": 6,
+    "from_fmt": "yaml",
+    "to_fmt": "json",
+    "input_data": "- name: John\n  surname: Doe\n- name: Jane\n  surname: Doe\n",
+    "output_data": "[{\"name\": \"John\", \"surname\": \"Doe\"}, {\"name\": \"Jane\", \"surname\": \"Doe\"}]",
+    "datetime": "Wed Aug 19 18:29:36 2020"
   }
 ]

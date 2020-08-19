@@ -6,12 +6,10 @@ curdir = os.path.dirname(os.path.realpath(__file__))
 rootdir = os.path.abspath(os.path.join(curdir, os.pardir))
 
 
-def timestamp():
-    return int(time.time())
-
-
 def save(data, path):
+    # print(data)
     s = json.dumps(data, indent=2, ensure_ascii=False)
+    # print(s)
     with open(path, 'w+', encoding='utf-8') as fout:
         fout.write(s)
 
@@ -19,7 +17,7 @@ def save(data, path):
 def load(path):
     if not os.path.exists(path):
         with open(path, 'w', encoding='utf-8') as fout:
-            fout.write('[]')
+            fout.write('')
 
     with open(path, 'r', encoding='utf-8') as fin:
         s = fin.read()

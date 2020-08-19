@@ -4,6 +4,7 @@ import json
 from flask import (
     Flask,
     request,
+    jsonify,
 )
 
 from models.conversion import Conversion
@@ -32,9 +33,9 @@ def convert():
     data = request.data
     data_string = data.decode('utf-8')
     org_data = json.loads(data_string)
-    # print('Original data:\n', org_data)
     fmt_from = org_data.get('from', 'json')
     fmt_to = org_data.get('to', 'csv')
+
     func_map = {
         ('json', 'csv'): json2csv,
         ('csv', 'json'): csv2json,
@@ -44,12 +45,10 @@ def convert():
         ('yaml', 'json'): yaml2json,
     }
     data = org_data.get('data', '')
-    # print(f'data[{type(data)}]:\n', data)
     converter = func_map.get((fmt_from, fmt_to), None)
     res = converter(data)
 
     form = {
-        'datetime': int(time.time()),
         'from': fmt_from,
         'to': fmt_to,
         'input_data': data,
@@ -57,6 +56,22 @@ def convert():
     }
     conversion = Conversion(form)
     conversion.save()
+    return res
+
+
+@app.route('/converts', methods=['GET'])
+def get_converts():
+    conversions = Conversion.all()
+    conversions = [conv.json() for conv in conversions]
+    res = jsonify(conversions)
+    return res
+
+
+@app.route('/converts/<int:id>', methods=['GET'])
+def get_convert(id):
+    conversion = Conversion.find(id)
+    conversion = conversion.json()
+    res = jsonify(conversion)
     return res
 
 
