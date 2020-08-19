@@ -1,0 +1,11 @@
+[
+  {
+    "id": 1,
+    "from_fmt": "csv",
+    "to_fmt": "json",
+    "input_data": "name,surname\r\nJohn,Doe\r\nJane,Doe\r\n",
+    "output_data": "[{\"name\": \"John\", \"surname\": \"Doe\"}, {\"name\": \"Jane\", \"surname\": \"Doe\"}]",
+    "datetime": 1597851987,
+    "user_id": ""
+  }
+]

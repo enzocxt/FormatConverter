@@ -1,3 +1,4 @@
+import time
 import json
 
 from flask import (
@@ -5,6 +6,7 @@ from flask import (
     request,
 )
 
+from models.conversion import Conversion
 from utils import (
     json2csv,
     csv2json,
@@ -45,6 +47,16 @@ def convert():
     # print(f'data[{type(data)}]:\n', data)
     converter = func_map.get((fmt_from, fmt_to), None)
     res = converter(data)
+
+    form = {
+        'datetime': int(time.time()),
+        'from': fmt_from,
+        'to': fmt_to,
+        'input_data': data,
+        'output_data': res,
+    }
+    conversion = Conversion(form)
+    conversion.save()
     return res
 
 
