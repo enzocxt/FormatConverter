@@ -23,4 +23,3 @@ class Conversion(Model):
         self.input_data = form.get('input_data', '')
         self.output_data = form.get('output_data', '')
         self.datetime = form.get('datetime', timestamp())
-        # self.user_id = form.get('user_id', '')
