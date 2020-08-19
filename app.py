@@ -8,6 +8,10 @@ from flask import (
 from utils import (
     json2csv,
     csv2json,
+    csv2yaml,
+    yaml2csv,
+    json2yaml,
+    yaml2json,
 )
 
 app = Flask(__name__)
@@ -26,15 +30,19 @@ def convert():
     data = request.data
     data_string = data.decode('utf-8')
     org_data = json.loads(data_string)
-    print('Original data:\n', org_data)
+    # print('Original data:\n', org_data)
     fmt_from = org_data.get('from', 'json')
     fmt_to = org_data.get('to', 'csv')
     func_map = {
         ('json', 'csv'): json2csv,
         ('csv', 'json'): csv2json,
+        ('csv', 'yaml'): csv2yaml,
+        ('yaml', 'csv'): yaml2csv,
+        ('json', 'yaml'): json2yaml,
+        ('yaml', 'json'): yaml2json,
     }
     data = org_data.get('data', '')
-    print(f'data[{type(data)}]:\n', data)
+    # print(f'data[{type(data)}]:\n', data)
     converter = func_map.get((fmt_from, fmt_to), None)
     res = converter(data)
     return res
